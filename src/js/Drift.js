@@ -151,7 +151,8 @@ export default class Drift {
       touchBoundingBox: this.settings.touchBoundingBox,
       namespace: this.settings.namespace,
       zoomFactor: this.settings.zoomFactor,
-      boundingBoxContainer: this.settings.boundingBoxContainer
+      boundingBoxContainer: this.settings.boundingBoxContainer,
+      inlineContainer: this.settings.inlineContainer
     });
   }
 

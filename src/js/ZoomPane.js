@@ -118,8 +118,8 @@ export default class ZoomPane {
       // inconsistencies, but it's difficult to tell for sure.
       // let scrollX = isTouch ? 0 : window.scrollX;
       // let scrollY = isTouch ? 0 : window.scrollY;
-      const scrollX = window.pageXOffset;
-      const scrollY = window.pageYOffset;
+      const scrollX = 0;
+      const scrollY = 0;
 
       let inlineLeft =
         triggerRect.left + percentageOffsetX * triggerRect.width - elWidth / 2 + this.settings.inlineOffsetX + scrollX;

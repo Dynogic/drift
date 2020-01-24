@@ -21,7 +21,8 @@ export default class Trigger {
       touchBoundingBox = throwIfMissing(),
       namespace = null,
       zoomFactor = throwIfMissing(),
-      boundingBoxContainer = throwIfMissing()
+      boundingBoxContainer = throwIfMissing(),
+      inlineContainer = throwIfMissing()
     } = options;
 
     this.settings = {
@@ -37,7 +38,8 @@ export default class Trigger {
       touchBoundingBox,
       namespace,
       zoomFactor,
-      boundingBoxContainer
+      boundingBoxContainer,
+      inlineContainer
     };
 
     if (this.settings.hoverBoundingBox || this.settings.touchBoundingBox) {
@@ -195,10 +197,18 @@ export default class Trigger {
     const percentageOffsetX = offsetX / this.settings.el.clientWidth;
     const percentageOffsetY = offsetY / this.settings.el.clientHeight;
 
+    const rectInlineContainer = this.settings.inlineContainer.getBoundingClientRect();
+    const triggerRect = { 
+      left: rect.left - rectInlineContainer.left, 
+      top: rect.top - rectInlineContainer.top, 
+      width: rect.width, 
+      height: rect.height 
+    };
+
     if (this.boundingBox) {
-      this.boundingBox.setPosition(percentageOffsetX, percentageOffsetY, rect);
+      this.boundingBox.setPosition(percentageOffsetX, percentageOffsetY, triggerRect);
     }
 
-    this.settings.zoomPane.setPosition(percentageOffsetX, percentageOffsetY, rect);
+    this.settings.zoomPane.setPosition(percentageOffsetX, percentageOffsetY, triggerRect);
   }
 }
