@@ -79,7 +79,7 @@ export default class ZoomPane {
   _setImageSize(triggerWidth, triggerHeight) {
     this.imgEl.style.width = `${triggerWidth * this.settings.zoomFactor}px`;
     this.imgEl.style.height = `${triggerHeight * this.settings.zoomFactor}px`;
-    this.imgEl.style.maxWidth = 'unset';
+    this.imgEl.style.maxWidth = 'none';
   }
 
   // `percentageOffsetX` and `percentageOffsetY` must be percentages
