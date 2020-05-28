@@ -141,6 +141,17 @@ export default class ZoomPane {
         }
       }
 
+      const fullWidth = getComputedStyle(this.el).getPropertyValue('--magnify-width-full') === 'yes';
+      const fullHeight = getComputedStyle(this.el).getPropertyValue('--magnify-height-full') === 'yes';
+      
+      if (fullWidth) {
+        inlineLeft = 0;
+      }
+
+      if (fullHeight) {
+        inlineTop = 0;
+      }
+
       this.el.style.left = `${inlineLeft}px`;
       this.el.style.top = `${inlineTop}px`;
     }
@@ -185,6 +196,10 @@ export default class ZoomPane {
     addClasses(this.el, this.openClasses);
 
     if (this.imgEl.getAttribute("src") != imageURL) {
+      const zoomPaneLoader = this.el.querySelector('.drift-zoom-pane-loader');
+      if (zoomPaneLoader) {
+        zoomPaneLoader.style.display = 'block';
+      }
       addClasses(this.el, this.loadingClasses);
       this.imgEl.addEventListener("load", this._handleLoad, false);
       this._setImageURL(imageURL);
@@ -256,6 +271,10 @@ export default class ZoomPane {
   }
 
   _handleLoad() {
+    const zoomPaneLoader = this.el.querySelector('.drift-zoom-pane-loader');
+    if (zoomPaneLoader) {
+      zoomPaneLoader.style.display = 'none';
+    }
     this.imgEl.removeEventListener("load", this._handleLoad, false);
     removeClasses(this.el, this.loadingClasses);
   }
